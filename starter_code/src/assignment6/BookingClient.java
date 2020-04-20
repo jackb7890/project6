@@ -77,7 +77,7 @@ public class BookingClient {
         @Override
         public void run() {
             for (int i = 0; i < lineLength; i++) {
-     //           synchronized (this) {
+                synchronized (this) {
                     Theater.Seat seat = theater.bestAvailableSeat();
                     int client = theater.getAndIncClient();
                     if (theater.getsoldOut()){
@@ -92,7 +92,7 @@ public class BookingClient {
                         Theater.Ticket t = theater.printTicket(boxOfficeId, seat, client);
                         System.out.println(t);
                     }
-       //         }
+                }
             }
         }
     }
@@ -111,18 +111,18 @@ public class BookingClient {
         BookingClient bc = new BookingClient(office, theater);
         bc.simulate();
 
-        // try{
-        //     Thread.sleep(10000);
-        // }
-        // catch (Exception e){
+        try{
+            Thread.sleep(10000);
+        }
+        catch (Exception e){
 
-        // }
-        // System.out.println("@@@@@@");
+        }
+        System.out.println("@@@@@@");
 
-        // for (Theater.Ticket t : theater.getTransactionLog()) {
-        //     System.out.println(t);
-        //     System.out.println("@@@@@@");
-        // }
+        for (Theater.Ticket t : theater.getTransactionLog()) {
+            System.out.println(t);
+            System.out.println("@@@@@@");
+        }
 
     }
 }

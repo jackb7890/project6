@@ -147,7 +147,7 @@ public class Theater {
         this.show = show;
         for (int r = 0; r < numRows; r++) {
             seats.add(new ArrayList<Seat>());
-            for (int c = 0; c < seatsPerRow; c++) {
+            for (int c = 1; c <= seatsPerRow; c++) {
                 seats.get(r).add(new Seat(r, c));
             }
         }
@@ -180,7 +180,7 @@ public class Theater {
      */
     public Ticket printTicket(String boxOfficeId, Seat seat, int client) {
         // TODO: Implement this method
-    //    synchronized (this) {
+        synchronized (this) {
             try {
                 Thread.sleep(printDelay);
             } catch (Exception e) {
@@ -191,7 +191,7 @@ public class Theater {
                 return null;
             if (seatTaken(seat))
                 return null;
-synchronized(this){
+//synchronized(this){
             Ticket ticket = new Ticket(show, boxOfficeId, seat, client);
             transactionLog.add(ticket);
             return ticket;
