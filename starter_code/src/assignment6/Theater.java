@@ -141,7 +141,6 @@ public class Theater {
     private boolean soldOut = false;
 
     public Theater(int numRows, int seatsPerRow, String show) {
-        // TODO: Implement this constructor
         this.numRows = numRows;
         this.seatsPerRow = seatsPerRow;
         this.show = show;
@@ -160,7 +159,6 @@ public class Theater {
      * @return the best seat or null if theater is full
      */
     public Seat bestAvailableSeat() {
-        // TODO: Implement this method
         synchronized (this) {
             for (int r = 0; r < seats.size(); r++) {
                 if (seats.get(r).size() > 0) {
@@ -179,7 +177,6 @@ public class Theater {
      * @return a ticket or null if a box office failed to reserve the seat
      */
     public Ticket printTicket(String boxOfficeId, Seat seat, int client) {
-        // TODO: Implement this method
         synchronized (this) {
             try {
                 Thread.sleep(printDelay);
@@ -191,12 +188,10 @@ public class Theater {
                 return null;
             if (seatTaken(seat))
                 return null;
-//synchronized(this){
             Ticket ticket = new Ticket(show, boxOfficeId, seat, client);
             transactionLog.add(ticket);
             return ticket;
-}
-    //    }
+        }
     }
 
     /**
